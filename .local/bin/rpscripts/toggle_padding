@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+STATE_FILE="$HOME/.cache/ratpoison_gap_state"
+
+if [ ! -f "$STATE_FILE" ]; then
+    echo "off" > "$STATE_FILE"
+fi
+
+STATE=$(cat "$STATE_FILE")
+
+if [ "$STATE" = "off" ]; then
+    # gap bekapcs
+    ratpoison -c "set padding 0 0 0 0"
+    ratpoison -c "set border 0"
+    echo "on" > "$STATE_FILE"
+else
+    # gap kikapcs
+    ratpoison -c "set padding 0 53 0 0"
+    ratpoison -c "set border 3"
+    echo "off" > "$STATE_FILE"
+fi
+

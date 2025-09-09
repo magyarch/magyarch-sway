@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+if [ "$(ratpoison -c 'set border')" -ge 3 ]; then ratpoison -c "set border 0"; else ratpoison -c "set border 3"; fi

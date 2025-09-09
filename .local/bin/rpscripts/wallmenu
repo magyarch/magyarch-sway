@@ -1,0 +1,21 @@
+#!/bin/env sh
+# wallpapers menu
+
+declare options=("Fill
+Scale
+Tile")
+
+choice=$(echo -e "${options[@]}" | dmenu -i -c -g 1 -l 20 -p ' Style: ' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Medium-12')
+
+case "$choice" in
+    Fill)
+        choice="$HOME/.local/bin/rpscripts/wall-menu/fill.sh"
+    ;;
+    Scale)
+        choice="$HOME/.local/bin/rpscripts/wall-menu/scale.sh"
+    ;;
+    Tile)
+        choice="$HOME/.local/bin/rpscripts/wall-menu/tile.sh"
+    ;;
+esac
+sh $choice

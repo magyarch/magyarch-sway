@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+IF_HERB=`pgrep herbstluftwm`
+
+if [ -n "$IF_HERB" ]; then
+    killall herbstluftwm
+
+else
+   ratpoison -c "tmpwm herbstluftwm"
+
+fi

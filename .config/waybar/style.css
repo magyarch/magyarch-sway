@@ -1,0 +1,120 @@
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+ #waybar {
+  background: rgba(40, 42, 54, 0.2);
+  border-radius: 12;
+  font-size: 13px;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  transition-duration: .5s;
+  }
+
+ #workspaces button {
+   border-radius: 12px;
+    margin-right: 10px;
+    padding: 1px 3px;
+    font-weight: bold;
+    background-color: #44475a;
+}
+
+#workspaces button.active, #workspaces button.focused{
+    padding: 0 3px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    background: #6272a4;
+    color: #282a36;
+
+}
+
+button:hover {
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  background: none; /* Remove predefined background color (white) */
+  transition: none; /* Disable predefined animations */
+}
+
+/* Fix: active workspace doesn't show up */
+/* #workspaces button.focused { */
+#workspaces button.active {
+  color: #6272a4;
+  font-size: 18px;
+}
+
+#custom-powermenu,
+#custom-amdgpu,
+#custom-amdcpu,
+#cpu,
+#memory,
+#workspaces,
+#clock,
+#custom-weather
+#window,
+#pulseaudio,
+
+#window {
+  color: #929db1;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+#custom-weather {
+  color: #ec0075;
+  padding-right: 6px;
+  padding-left: 4px;
+}
+
+#tray {
+  margin-left: 2px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+#custom-powermenu {
+  color: #e06c75;
+  padding-right: 11px;
+  margin-right: 8px;
+}
+
+#custom-amdgpu {
+  color: #e06c75;
+  padding-right: 11px;
+  margin-right: 8px;
+}
+
+#custom-amdcpu {
+  font-family: "JetBrainsMono Nerd Font";
+  color: #6272a4;
+  padding-right: 11px;
+  margin-right: 8px;
+}
+
+#scratchpad {
+  color: #cffafe;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+#pulseaudio {
+  color: #0fb9b1;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+#cpu {
+  color: #61afef;
+}
+
+
+#memory {
+  color: #e5c07b;
+}
+
+#clock {
+  color: #ff5b00;
+  margin-left: 8px;
+  /* opacity: 0.7; */
+  /* font-size: 18px; */
+}

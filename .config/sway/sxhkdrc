@@ -1,0 +1,57 @@
+# MagyArch Linux i3wm keybinds #
+#########################################
+
+# Terminal emulator
+super + shift + Return
+     scratch scratchpad
+
+# Chat client, gui filemanager
+super + {_,shift + } p
+    {discord, thunar}
+
+# open gui text editor sublime
+super + shift + e
+    subl
+
+# Show keybind in rofi,htop system monitor
+super + {_,shift + } n
+    {scratch Music, scratch News}
+
+
+# Wallpaper chenger
+super + F8
+    wal
+
+# Mount and umount a USB drive or Android device
+super + {F9,F10}
+    {dmenumount,dmenuumount}
+
+# Decrease/increase volume +-5
+alt + {Up,Down}
+    {pamixer --allow-boost -i 5 && pkill -RTMIN+10 i3blocks, pamixer --allow-boost -d 5 && pkill -RTMIN+10 i3blocks}
+
+# Mute volume
+F12
+   layout_manager.sh
+
+#################################################################################
+######################### i3 Bindings ##########################################
+
+# Quit,reboot,shutdown menu/i3; reload config
+super + c
+     eww open --toggle powermenu
+
+# i3; restart i3 in-place (preserves layout/session)
+super + r
+     $TERMINAL -e $FILE
+
+ # Gaps increase
+super + a
+  swaymsg gaps outer current plus 5
+
+# Gaps decrease
+super + shift + a
+  swaymsg gaps outer current minus 5
+
+
+

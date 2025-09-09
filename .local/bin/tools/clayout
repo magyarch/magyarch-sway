@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+
+LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g' | wofi --dmenu 'Layout')
+#LAYOUT=$(echo -e '\ndwindle' | wofi --dmenu 'System')
+
+
+case $LAYOUT in
+"master")
+	hyprctl keyword general:layout dwindle
+  notify-send -e -u low -i "$notif" "Dwindle Layout"
+	;;
+"dwindle")
+	hyprctl keyword general:layout master
+  notify-send -e -u low -i "$notif" "Master Layout"
+	;;
+*) ;;
+
+esac

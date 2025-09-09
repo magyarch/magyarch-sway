@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+APP_NAME="$1"
+
+case "$APP_NAME" in
+    scratchpad)
+        entry="kitty --class kitty -T scratchpad"
+        ;;
+    FM)
+        entry="kitty --class kitty -T FM -e vifm"
+        ;;
+    Mail)
+        entry="kitty --class kitty -T Mail -e neomutt"
+        ;;
+    Music)
+        entry="kitty --class kitty -T Music -e ncmpcpp"
+        ;;
+    Todo)
+        entry="kitty --class kitty -T Todo -e edconf.sh"
+        ;;
+    launcher)
+        entry="kitty --class kitty -T launcher -e fzf-launcher.sh"
+        ;;
+    *)
+        echo "Unknown app"
+        exit 1
+        ;;
+esac
+
+# Check if window exists
+# if hyprctl clients | grep -q "title: $APP_NAME"; then
+#     # If already open, toggle visibility using Hyprland's special workspace
+#     hyprctl dispatch togglespecialworkspace $APP_NAME
+# else
+#     # Launch app into special workspace
+#     hyprctl dispatch exec "[workspace special:$APP_NAME silent] $entry"
+# fi
+xdotool search --onlyvisible --name "$1" windowunmap \
+    || xdotool search --name "$1" windowmap \
+    || $entry &
+

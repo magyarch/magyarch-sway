@@ -1,0 +1,149 @@
+{
+
+  "layer": "top",
+    "position": "top",
+    "height": 25,
+    "margin-top": 2,
+    "modules-left": [
+      "clock",
+      "hyprland/window",
+      "custom/weather",
+      "sway/window",
+      ],
+    "modules-center": [
+      "hyprland/workspaces",
+      "sway/workspaces",
+      ],
+    "modules-right": [
+      "custom/amdcpu",
+      "cpu",
+      "custom/amdgpu",
+      "memory",
+      "pulseaudio",
+      "custom/powermenu",
+      "tray",
+    ],
+    "tray": {
+      "icon-size": 16,
+      "spacing": 10
+    },
+    "hyprland/window": {
+      "format": "{}",
+      "rewrite": {
+          "(\\d\\. )?(.*) - Chromium": "<span color=\"#4285F4\"></span>  $2 ",
+          "nvim (.*)": "<span color=\"#57A143\"></span>  $1",
+          "nvim": "<span color=\"#57A143\">  Neovim</span> ",
+          "ranger(.*)": "<span color=\"#ffffff\"></span>  $1",
+          //"kitty (.*)": "<span color=\"#ffffff\"></span>  $1",
+          "Search(.*)": "<span color=\"#a855f7\"></span>  Search$1",
+      },
+      "sway/window": {
+	    "format": "{title}",
+ 		"max-length": 333,
+	    "seperate-outputs": true
+  },
+      "separate-outputs": false
+    },
+    "hyprland/submap": {
+      "format": "✌️ {}",
+      "max-length": 8,
+      "tooltip": true
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "󰲠",
+        "2": "󰲢",
+        "3": "󰲤",
+        "4": "󰲦",
+        "5": "󰲨",
+        "6": "󰲪",
+        "7": "󰲬",
+        "8": "󰲮",
+        "9": "󰲰",
+        "10": "󰿬",
+        "-99": "",
+        "active": "",
+        "default": ""
+      }
+    },
+    "custom/amdgpu": {
+    "format": "{}",
+    "exec": "~/.config/waybar/amdgpu.sh",
+    "interval": 3,
+    "tooltip": true,
+    "return-type": "json",
+    "on-click": "pkill -SIGRTMIN+10 waybar"
+    },
+    "custom/amdcpu": {
+    "exec": "~/.config/waybar/amdcpu.sh",
+    "interval": 2,
+    "format": "{}",
+    "return-type": "json",
+    "tooltip": "false"
+    },
+    "memory": {
+      "format": "󰍛 {used:0.1f}GiB/{total:0.1f}GiB ({percentage}%)",
+      "tooltip": "false",
+      "on-click": "exec kitty -e htop"
+    },
+    "cpu": {
+      "format": "  {avg_frequency}GHz",
+      "tooltip": "true",
+      "interval": 1
+    },
+    "custom/powermenu": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "exec wlogout --protocol layer-shell"
+    },
+    "custom/weather": {
+      "format": "{}",
+      "tooltip": true,
+      "interval": 1200,
+      "signal": 10,
+      "return-type": "json",
+      "exec": "exec $HOME/.config/waybar/weather2.sh",
+      "on-click": "~/.config/waybar/weather2.sh --force && pkill -SIGRTMIN+10 waybar"
+    },
+    "pulseaudio": {
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "{volume}% {icon}",
+      "format-muted": "",
+      "format-icons": {
+          "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+    "clock": {
+      //"format": "<span color=\"#56b6c2\"></span> {:%H:%M}",
+      "format": "{:%Y-%m-%d %H:%M}",
+      "interval": 60,
+      "tooltip": true,
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+
+ },
+
+
+}

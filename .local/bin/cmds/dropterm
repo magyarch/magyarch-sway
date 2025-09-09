@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+CLASS=dropterm
+
+wid=$(xdotool search --class "$CLASS" 2>/dev/null | head -n1)
+
+if [ -z "$wid" ]; then
+    # Ha nincs, indítsuk el
+    alacritty --class "$CLASS" &
+    exit
+fi
+
+# Nézd meg, a dropterm fókuszban van-e
+focused=$(herbstclient attr clients.focus.winid 2>/dev/null)
+
+if [ "$focused" = "0x$(printf %x $wid)" ]; then
+    # Ha fókuszban van → minimize
+    herbstclient set_attr clients.$focused.minimized true
+else
+    # Ha nem fókuszban van → állítsd vissza és fókuszáld
+    herbstclient jumpto "$wid"
+    herbstclient set_attr clients.$wid.minimized false
+fi
+

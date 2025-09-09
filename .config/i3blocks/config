@@ -1,0 +1,141 @@
+# For the benefit of emacs users: -*- shell-script -*-
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+
+
+align=center
+separator=false
+color=#f8f8f2
+separator_block_width=15
+markup=pango
+
+
+# [cpu_stats]
+# #command=sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f<span color=\"#ff5555\">%</span>", (100 - $8) } ' && sensors | awk '{ if ($1 == "CPU" && $2 == "Temperature:") { gsub(/[+°C]/, "") ; printf " %i<span color=\"#ff5555\">°C</span>\n", $3 } }'
+# command=cpu
+# interval=2
+# label=<span color="#6272a4"><b>CPU: </b></span>
+# border=#6272a4
+# border_top=0
+# border_right=0
+# border_bottom=1
+# border_left=0
+
+
+[gpu_stats]
+command=sensors | awk  '/edge:/ {print $2}'
+label=<span color="#2e8b57"><b>GPU: </b></span>
+interval=2
+border=#2e8b57
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[battery]
+interval=2
+color=#ff5555
+border=#ff5555
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[cpu_stats]
+command=sensors | awk  '/^Core 0:/ {print $3}'
+interval=2
+label=<span color="#6272a4">CPU:</span>
+border=#6272a4
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[nmve_stats]
+command=sensors | sed -rn 's/.*Composite:\s+([^ ]+).*/\1/p'
+label=<span color="#c3cdc8"><b>NVME1: </b></span>
+interval=2
+border=#c3cdc8
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[cpufreq_stats]
+command=cpu_freq.sh
+#command=cpu
+label=<span color="#d36135"><b>CPUFREQ:</b></span>
+interval=1
+border=#d36135"
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[memory]
+#command=free --giga | awk 'FNR==2{ printf "%i<span color=\"#ff79c6\">GiB</span>\n", $7 }'
+command=memory
+interval=2
+label=<span color="#ff79c6">MEM: </span>
+border=#ff79c6
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[root]
+command=df -h / | awk 'FNR==2 { gsub(/[A-Za-z]/, ""); printf "%i<span color=\"#f1fa8c\">GiB</span>\n", $4 }'
+interval=3
+label=<span color="#f1fa8c"> </span>
+border=#f1fa8c
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+[weather]
+command=weather
+interval=3600
+border=#bd93f9
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+[date]
+#command=LC_ALL="hu_HU.UTF-8" date '+%Y %b %d (%a) %H:%M%p' | awk '{ printf "%s<span color=\"#2e8b57\">%s</span>%s<span color=\"#2e8b57\"> %s</span>\n", $1, $2, $3, $4 }'
+#color=\"#2e8b57\">%s %s</span>%s<span color=\"#2e8b57\"> %s </span>\n", $1, $3, $4, $5, $6 }'
+command=clock
+interval=60
+label=<span color="#1793d1"> </span>
+border=#1793d1
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+
+
+[volume]
+#command=pulseaudio-ctl full-status | awk '{ printf "%i<span color=\"#bd93f9\">%</span>\n", $1 }'
+command=volume
+interval=1
+signal=10
+#label=<span color="#bd93f9"> </span>
+border=#bd93f9
+border_top=0
+border_right=0
+border_bottom=1
+border_left=0
+scroll-up=pamixer --allow-boost -i 1
+scroll-down=pamixer --allow-boost -d 1

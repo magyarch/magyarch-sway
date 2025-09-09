@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+alacrittyid=$(xdotool search --class alacritty)
+currentid=$(xdotool getactivewindow)
+
+if [ -z $alacrittyid ]
+then
+  alacritty
+elif [ $alacrittyid != $currentid ]
+then
+  xdotool search --class alacritty windowactivate
+  xdotool search --class alacritty windowfocus
+else
+  xdotool search --class alacritty windowminimize
+fi

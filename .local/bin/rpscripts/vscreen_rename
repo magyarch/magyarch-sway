@@ -1,0 +1,12 @@
+#!/bin/sh
+
+groups=($(ratpoison -c "groups" | cut -c 1))
+new_names=("web" "chat" "edit" "media" "steam" "movie")
+for i in "${groups[@]}"; do
+    ratpoison -c "gselect $i"
+    ratpoison -c "gnew ${new_names[$i]}"
+    ratpoison -c "gnewbg ${new_names[$i]}"
+done
+# let's get back to the first vscreen :)
+
+#ratpoison -c "gselect default"

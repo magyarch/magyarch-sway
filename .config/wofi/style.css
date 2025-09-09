@@ -1,0 +1,33 @@
+window {
+  border-radius: 12px;
+  background-color: rgba(40, 42, 54, 0.95);
+  font-family: Source Code Pro;
+  font-size: 16px;
+  color: #c3c2c8;
+}
+
+#input {
+  padding: 10px;
+  margin: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(50, 50, 50, 1.0);
+  color: #ffffff;
+}
+
+#entry {
+  padding: 10px;
+  margin: 6px 12px;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+#entry:selected {
+  background-color: transparent; #rgba(98, 114, 164, 0.6);
+  color: white;
+}
+
+#text {
+  margin-left: 8px;
+}
+

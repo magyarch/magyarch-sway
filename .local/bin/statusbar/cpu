@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+sensors | awk  '/^edge:/ {print $3}'

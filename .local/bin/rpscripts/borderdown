@@ -1,0 +1,11 @@
+#!/bin/sh
+
+border=(ratpoison -c set | grep ^border | awk '{print $2}')
+border_up() {
+echo "$border-4" | bc # }
+if [ "$border" -le "48" ]; then
+ratpoison -c "set fwcolor #1a1a1a" &&
+ratpoison -c "set border $(border_up)"
+else
+exit 0
+fi

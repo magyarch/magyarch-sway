@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+
+tmux new-session \; \
+  send-keys 'pipes2-slim' C-m \; \
+  split-window -v -p 75 \; \
+  split-window -h -p 40 \; \
+  send-keys 'vifm' C-m \; \
+  select-pane -t 1 \; \
+  split-window -v \; \
+  send-keys 'ncmpcpp' C-m \;
